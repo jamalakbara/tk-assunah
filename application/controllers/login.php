@@ -45,7 +45,9 @@
      }
      elseif ($level == "administrasi") {
       redirect('beranda');
-     } 
+     }
+    }else{
+      redirect('login');
     }
    }
   }

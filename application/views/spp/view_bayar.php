@@ -30,6 +30,7 @@
                       <tr>
                         <th width="20%">No. SPP</th>
                         <th width="25%">Nama Siswa</th>
+                        <th width="25%">Bulan</th>
                         <th width="25%">Jumlah Pembayaran</th>
                         <th width="25%">Status</th>
                         <th width="15%">Aksi</th>
@@ -43,9 +44,10 @@
                                 <tr>
                                     <td>".$data['no_spp']."</td>
                                     <td>".$data['nama_siswa']."</td>
+                                    <td>".$data['bulan']."</td>
                                     <td>".format_rp($data['jumlah'])."</td>
                                     <td>".$data['status']."</td>
-                                    <td>".anchor('spp/pembayaran/'.$data['no_spp'],'Bayar SPP', array('class' => 'btn btn-primary'))."</td> </tr>";
+                                    <td>".anchor('spp/detail/'.$data['no_spp'],'Bayar', array('class' => 'btn btn-primary'))."</td> </tr>";
                                 $no++;
                                 }
                             ?>

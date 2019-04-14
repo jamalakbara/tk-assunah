@@ -15,7 +15,8 @@
 				$input 		  = array(
 									'no_rincian' => $no_rincian,
 									'total' => 0,
-									'keterangan' => 'Penginputan Data Belum Selesai'
+									'keterangan' => 'Penginputan Data Belum Selesai',
+									'status' => 'Tidak digunakan'
 								);
 				$this->db->insert('rincian', $input);
 			}else{
@@ -43,12 +44,11 @@
 				$input = array(
 					'no_rincian' => $this->input->post('no_rincian'),
 					'jenis_rincian' => $this->input->post('jenis_rincian'),
-					'keterangan' => 'Penginputan Data Belum Selesai'
+					'keterangan' => 'Penginputan Data Belum Selesai',
+					'status' => 'Tidak digunakan'
 				);
 				$this->db->insert('rincian', $input);
 			}else{
-				// $kode_akun = $this->input->post('kode_akun');
-				//$detail['jumlah_hadir'] = $this->input->post('jumlah_hadir');
 				$data = array(
 					'no_rincian' => $this->input->post('no_rincian'),
 					'nama_rincian' => $this->input->post('nama_rincian'),
@@ -56,9 +56,6 @@
 				);
 				$this->db->insert('detail_rincian', $data);
 				$this->db->query('UPDATE rincian a, detail_rincian b SET a.jenis_rincian ="'.$this->input->post("jenis_rincian"). '"WHERE a.no_rincian = "'.$this->input->post("no_rincian").'"');
-				//  $this->db->where(array('no_rincian' => $_POST['no_rincian']))
-				// 		 ->SET('total', $query->row()->total+$this->input->post('total'))
-				// 		  ->update('detail_rincian');
 			}
 		}
 		public function GetTotalRincian($id){
@@ -102,12 +99,19 @@
 			//mengambil total rincian
 			$nominal = $this->m_rincian->GetTotalRincian($id);
 		
+			//update data sebelumnya
+			$this->db->set('status', 'Tidak Digunakan');
+			$this->db->where('no_rincian', $id-1);
+			$this->db->update('rincian');
+
 			//update data rincian
 			$this->db->set('total', $nominal, FALSE);
 			$this->db->set('keterangan', 'Selesai');
+			$this->db->set('status', 'Digunakan');
 			$this->db->where('no_rincian', $id);
 			$this->db->update('rincian');
-		  }
+			}
+			
 		  public function getID_rincian($id){
 			$this->db->where('no_rincian',$id);
 			return $this->db->get('rincian');

@@ -252,7 +252,7 @@
                       </a>
                       <ul class="nav lt">
                         <li >
-                          <a href="<?php echo site_url('');?>" >                                                        
+                          <a href="<?php echo site_url('laporan/lihat_laporan');?>" >                                                        
                             <i class="fa fa-angle-right"></i>
                             <span>Laporan Realisasi Anggaran</span>
                           </a>

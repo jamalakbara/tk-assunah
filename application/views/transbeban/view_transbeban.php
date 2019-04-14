@@ -10,7 +10,7 @@
         <section id="content">
             <section class="vbox">
                 <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
-                    <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="<?php echo site_url()."/beranda"?>"><i class="fa fa-home"></i> Beranda</a></li>
                     <li class="active"><i class="fa fa-table"></i> Daftar Pengeluaran Kas</li>
                 </ul>
             </section>

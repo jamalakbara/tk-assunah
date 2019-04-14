@@ -74,6 +74,12 @@
 				redirect('spp/lihat_spp');
 			}
 		}
+		public function detail(){
+			$id = $this->uri->segment(3);
+			$data['spp']  = $this->m_spp->getID_spp($id)->row_array();
+			$data['detail'] = $this->m_spp->GetDataDetailSpp($id);
+			$this->template->load('template', 'spp/detail_spp', $data);
+		}
 		 public function mau_bayar() {
     	$config["base_url"]    = base_url()."index.php/spp/mau_bayar";
 		$config["total_rows"]  = $this->m_spp->HitungJumlahBaris();
@@ -101,10 +107,12 @@
 		$config["per_page"]);
     	$this->template->load('template', 'spp/view_bayar', $data);
     }
-    public function pembayaran() {
-    	$id= $this->uri->segment(3);
-    	$data['list'] = $this->m_spp->mau_bayar($id);
-    	$this->template->load('template', 'spp/bayar_spp', $data);
+    public function pembayaran($id) {
+    	// $id= $this->uri->segment(3);
+    	// $data['list'] = $this->m_spp->mau_bayar($id);
+		// $this->template->load('template', 'spp/bayar_spp', $data);
+		$this->m_spp->mau_bayar($id);
+    	redirect('spp/lihat_spp');
     }
      public function pelunasan() {
     	$data['detail'] = $this->m_spp->beneran_selesai();

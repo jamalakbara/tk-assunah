@@ -60,7 +60,8 @@ class m_transbeban extends ci_model{
 	  	if($query->num_rows() == 0){
 	  		$detail['no_trans'] = $this->input->post('no_trans');
 	  		$detail['kode_akun']    = $this->input->post('kode_akun');
-	  		$detail['total'] = $this->input->post('total');
+				$detail['total'] = $this->input->post('total');
+				$detail['tgl_trans'] = date('Y-m-d');
 	   		$this->db->insert('detail_transbeban', $detail);
 
 	  	}else{

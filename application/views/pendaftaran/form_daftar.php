@@ -95,8 +95,10 @@
                 <select name = "rincian" class = "form-control">
                   <!-- <option value="#" disabled selected>Pilih Rincian</option> -->
                 <?php
+                  $no = 1;
                   foreach($rincian as $data){
-                    echo "<option value = ".$data['no_rincian'].">".$data['jenis_rincian']."</option>";
+                    echo "<option value = ".$data['no_rincian']." selected>".$no.' - '.$data['jenis_rincian']."</option>";
+                    $no++;
                   }
                 ?>
                 </select>

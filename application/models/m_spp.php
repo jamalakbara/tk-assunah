@@ -15,40 +15,40 @@
       $mydate=getdate(date("U"));
       switch ($mydate['month']){
         case 'January':
-                        $bulan = 'Januari';
+                        $bulan = 'Januari '.date('Y');
                         break;
         case 'February':
-                        $bulan = 'Februari';
+                        $bulan = 'Februari '.date('Y');
                         break;
         case 'March':
-                        $bulan = 'Maret';
+                        $bulan = 'Maret '.date('Y');
                         break;
         case 'April':
-                        $bulan = 'April';
+                        $bulan = 'April '.date('Y');
                         break;
         case 'May':
-                        $bulan = 'Mei';
+                        $bulan = 'Mei '.date('Y');
                         break;
         case 'June':
-                        $bulan = 'Juni';
+                        $bulan = 'Juni '.date('Y');
                         break;
         case 'July':
-                        $bulan = 'Juli';
+                        $bulan = 'Juli '.date('Y');
                         break;
         case 'August':
-                        $bulan = 'Agustus';
+                        $bulan = 'Agustus '.date('Y');
                         break;
         case 'September':
-                        $bulan = 'September';
+                        $bulan = 'September '.date('Y');
                         break;
         case 'October':
-                        $bulan = 'Oktober';
+                        $bulan = 'Oktober '.date('Y');
                         break;
         case 'November':
-                        $bulan = 'November';
+                        $bulan = 'November '.date('Y');
                         break;
         case 'December':
-                        $bulan = 'Desember';
+                        $bulan = 'Desember '.date('Y');
                         break;
         default : $bulan = 'error';
       }
@@ -111,12 +111,16 @@
   }
   public function view_bayar($start,$limit) {
  		$this->db->limit($limit,$start);
- 		$this->db->where('status', 'Belum Lunas');
+    $this->db->where('status', 'Belum Lunas');
+    $this->db->where('keterangan', 'Selesai');
  		return $this->db->get('spp')->result_array();
  	}
   public function mau_bayar($id) {
- 		$this->db->where('no_spp',$id);
- 		return $this->db->get('spp')->row();
+ 		// $this->db->where('no_spp',$id);
+    //  return $this->db->get('spp')->row();
+    $this->db->set('status', 'Sudah Lunas');
+		$this->db->where('no_spp', $id);
+		$this->db->update('spp');
  	}
  	public function beneran_selesai(){
  		$this->db->where('no_spp', $this->input->post('no_spp'));

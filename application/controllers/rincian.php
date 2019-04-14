@@ -38,14 +38,6 @@
 	 
 	public function simpan_rincian(){
 	  $config = array(
-			/*array(
-				'field' => 'tgl_trans',
-				'label' => 'Tanggal Transaksi',
-				'rules' => 'required',
-				'errors' => array(
-					'required' => '%s tidak boleh kosong'
-				)
-			),*/
 			array(
 				'field' => 'nama_rincian',
 				'label' => 'Nama Rincian',
@@ -74,7 +66,7 @@
 			  $data['detail'] = $this->m_rincian->GetDataDetailRincian($data['no_rincian']);
 			$this->template->load('template', 'rincian/form_rincian',$data);
 		}else {
-			var_dump($this->form_validation->run());
+			// var_dump($this->form_validation->run());
 			$this->m_rincian->InsertDetail();
 			redirect('rincian/form_rincian');
 		}

@@ -40,7 +40,7 @@ class pendaftaran extends CI_controller{
 			$id = $this->uri->segment(3);
 			$data['pendaftaran']  = $this->m_pendaftaran->getID_daftar($id)->row_array();
 			$data['detail'] = $this->m_pendaftaran->GetDataDetailDaftar($id);
-				$this->template->load('template', 'pendaftaran/detail_daftar', $data);
+			$this->template->load('template', 'pendaftaran/detail_daftar', $data);
 		}
 		public function simpan_daftar() {
 			$config = array(

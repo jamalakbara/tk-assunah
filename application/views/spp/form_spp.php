@@ -87,7 +87,7 @@
               ?>
               <div class="form-group">
                 <label>Bulan :</label>
-                <input class="form-control" name="bulan" value='<?= $bulan?>' readonly>
+                <input class="form-control" name="bulan" value='<?= $bulan." ".date("Y")?>' readonly>
                 <?php echo form_error('bulan'); ?>
               </div>
 

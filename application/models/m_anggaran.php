@@ -33,7 +33,9 @@ class m_anggaran extends ci_model{
 	  		return array();
 	}
 	public function GetDataAkun(){
-	  	return $this->db->get('akun')->result_array();
+			return $this->db->query('SELECT * FROM akun WHERE nama_akun LIKE "%Beban%" OR nama_akun LIKE "%Pendapatan%"')->result_array();
+			// $this->db->like('nama_akun','Beban');
+	  	// return $this->db->get('akun')->result_array();
 	}
 
 	public function getID_anggaran($id){
