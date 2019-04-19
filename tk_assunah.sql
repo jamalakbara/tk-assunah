@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Mar 2019 pada 05.04
+-- Waktu pembuatan: 19 Apr 2019 pada 16.42
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.2
 
@@ -77,7 +77,11 @@ INSERT INTO `anggaran` (`no_anggaran`, `total`, `periode`, `ket`) VALUES
 ('1', 300000, '2018-12-19', 'Selesai'),
 ('2', 850000, '2018-12-20', 'Selesai'),
 ('3', 150000, '2018-12-22', 'Selesai'),
-('4', 0, '0000-00-00', 'Penginputan Data Belum Selesai');
+('4', 13119841, '2019-03-24', 'Selesai'),
+('5', 10000000, '2019-04-10', 'Selesai'),
+('6', 150000, '2019-04-13', 'Selesai'),
+('7', 900000, '2019-04-13', 'Selesai'),
+('8', 0, '0000-00-00', 'Penginputan Data Belum Selesai');
 
 -- --------------------------------------------------------
 
@@ -104,7 +108,8 @@ INSERT INTO `datasiswa` (`nis`, `nama_siswa`, `tempat_lahir`, `tgl_lahir`, `gend
 ('397', 'ASGHAD ATHALA B.B.S', 'BATAM', '2013-09-23', 'Laki-Laki', 'AKHMAD MUSADDAQ'),
 ('398', 'ADHIPATI RASYID A', 'BATAM', '2013-07-16', 'Laki-Laki', 'SRI YADIN'),
 ('400', 'DEAR JELITA A', 'BATAM', '2013-10-21', 'Perempuan', 'JAN RUDI OMPUSUNGGU'),
-('401', 'JUSTIN WIJAYA', 'BATAM', '2015-04-06', 'Laki-Laki', 'HERMANTO WIJAYA');
+('401', 'JUSTIN WIJAYA', 'BATAM', '2015-04-06', 'Laki-Laki', 'HERMANTO WIJAYA'),
+('789', 'Asep Masturi', 'Tasik', '2015-06-10', 'Laki-Laki', 'Zinedine Zidane');
 
 -- --------------------------------------------------------
 
@@ -129,7 +134,13 @@ INSERT INTO `detail_anggaran` (`no_anggaran`, `periode`, `kode_akun`, `total`) V
 ('2', '2018-12-20', 510, 500000),
 ('2', '2018-12-20', 520, 200000),
 ('2', '2018-12-20', 530, 150000),
-('3', '2018-12-22', 520, 150000);
+('3', '2018-12-22', 520, 150000),
+('4', '2019-03-24', 410, 13119841),
+('5', '2019-04-10', 420, 10000000),
+('6', '2019-04-13', 540, 150000),
+('7', '2019-04-13', 540, 150000),
+('7', '2019-04-13', 550, 500000),
+('7', '2019-04-13', 560, 250000);
 
 -- --------------------------------------------------------
 
@@ -142,6 +153,20 @@ CREATE TABLE `detail_rincian` (
   `nama_rincian` varchar(100) NOT NULL,
   `total` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `detail_rincian`
+--
+
+INSERT INTO `detail_rincian` (`no_rincian`, `nama_rincian`, `total`) VALUES
+('1', 'Biaya Pembangunan', 25000000),
+('1', 'Biaya Administrasi', 1500000),
+('1', 'Baju Seragam', 1000000),
+('2', 'Biaya SPP', 1000000),
+('2', 'Komite', 2500000),
+('3', 'Biaya operasional', 15000000),
+('4', 'Biaya operasional', 15000000),
+('4', 'Biaya gaji guru', 15000000);
 
 -- --------------------------------------------------------
 
@@ -185,7 +210,12 @@ INSERT INTO `detail_transbeban` (`no_trans`, `tgl_trans`, `kode_akun`, `total`) 
 (4, '0000-00-00', 530, 150000),
 (4, '0000-00-00', 510, 125000),
 (5, '0000-00-00', 530, 150000),
-(5, '0000-00-00', 520, 150000);
+(5, '0000-00-00', 520, 150000),
+(6, '0000-00-00', 510, 250000),
+(7, '0000-00-00', 520, 150000),
+(8, '2019-04-11', 540, 300000),
+(9, '2019-04-13', 550, 150000),
+(9, '2019-04-13', 540, 100000);
 
 -- --------------------------------------------------------
 
@@ -216,6 +246,18 @@ CREATE TABLE `pendaftaran` (
   `keterangan` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `pendaftaran`
+--
+
+INSERT INTO `pendaftaran` (`no_pendaftaran`, `nama_siswa`, `tgl_daftar`, `total`, `status`, `keterangan`) VALUES
+('1', 'Abay', '2019-03-11', 27500000, 'Belum Lunas', 'Selesai'),
+('2', 'Alex', '2019-03-11', 27500000, 'Lunas', 'Selesai'),
+('3', 'Jamal Akbar Alam', '2019-03-11', 27500000, 'Belum Lunas', 'Selesai'),
+('4', 'Jamal Akbar Alam', '2019-03-11', 27500000, 'Belum Lunas', 'Selesai'),
+('5', 'Asep Masturi', '2019-03-24', 27500000, 'Belum Lunas', 'Selesai'),
+('6', '-', '0000-00-00', 0, 'Belum Lunas', 'Penginputan Data Belum Selesai');
+
 -- --------------------------------------------------------
 
 --
@@ -225,10 +267,20 @@ CREATE TABLE `pendaftaran` (
 CREATE TABLE `rincian` (
   `no_rincian` varchar(3) NOT NULL,
   `jenis_rincian` varchar(100) DEFAULT NULL,
-  `nama_rincian` varchar(100) DEFAULT NULL,
   `total` int(100) DEFAULT NULL,
-  `keterangan` varchar(100) NOT NULL
+  `keterangan` varchar(100) NOT NULL,
+  `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `rincian`
+--
+
+INSERT INTO `rincian` (`no_rincian`, `jenis_rincian`, `total`, `keterangan`, `status`) VALUES
+('1', 'Pendaftaran Murid Baru', 27500000, 'Selesai', 'Tidak digunakan'),
+('2', 'Pembayaran SPP', 3500000, 'Selesai', 'Digunakan'),
+('3', 'Pendaftaran Murid Baru', 15000000, 'Selesai', 'Tidak Digunakan'),
+('4', 'Pendaftaran Murid Baru', 30000000, 'Selesai', 'Digunakan');
 
 -- --------------------------------------------------------
 
@@ -240,20 +292,25 @@ CREATE TABLE `spp` (
   `no_spp` varchar(3) NOT NULL,
   `nama_siswa` varchar(100) NOT NULL,
   `jumlah` int(100) DEFAULT NULL,
-  `status` varchar(100) NOT NULL
+  `status` varchar(100) NOT NULL,
+  `bulan` varchar(20) NOT NULL,
+  `keterangan` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `spp`
 --
 
-INSERT INTO `spp` (`no_spp`, `nama_siswa`, `jumlah`, `status`) VALUES
-('101', 'ASGHAD ATHALA B.B.S', 400000, 'Sudah Lunas'),
-('102', 'JUSTIN WIJAYA', 400000, 'Sudah Lunas'),
-('103', 'DEAR JELITA A', 400000, 'Sudah Lunas'),
-('104', 'AFIQAH NUR SAFITRI', 400000, 'Sudah Lunas'),
-('105', 'ABHINAYA BASUPATI H.', 400000, 'Sudah Lunas'),
-('106', 'ASGHAD ATHALA B.B.S', 400000, 'Sudah Lunas');
+INSERT INTO `spp` (`no_spp`, `nama_siswa`, `jumlah`, `status`, `bulan`, `keterangan`) VALUES
+('101', 'ASGHAD ATHALA B.B.S', 400000, 'Sudah Lunas', 'Maret 2019', 'Selesai'),
+('102', 'JUSTIN WIJAYA', 400000, 'Sudah Lunas', 'Maret 2019', 'Selesai'),
+('103', 'DEAR JELITA A', 400000, 'Sudah Lunas', 'Maret 2019', 'Selesai'),
+('104', 'AFIQAH NUR SAFITRI', 400000, 'Sudah Lunas', 'Maret 2019', 'Selesai'),
+('105', 'ABHINAYA BASUPATI H.', 400000, 'Sudah Lunas', 'Maret 2019', 'Selesai'),
+('106', 'ASGHAD ATHALA B.B.S', 400000, 'Sudah Lunas', 'Maret 2019', 'Selesai'),
+('107', 'Asep Masturi', 3500000, 'Sudah Lunas', 'Maret 2019', 'Selesai'),
+('108', 'ABHINAYA BASUPATI H.', 3500000, 'Belum Lunas', 'April 2019', 'Selesai'),
+('109', '-', 0, 'Belum Lunas', 'April 2019', 'Penginputan Data Belum Selesai');
 
 -- --------------------------------------------------------
 
@@ -278,7 +335,11 @@ INSERT INTO `transbeban` (`no_trans`, `tgl_trans`, `total`, `keterangan`) VALUES
 (3, '2018-12-18', 200000, 'Selesai'),
 (4, '2018-12-18', 275000, 'Selesai'),
 (5, '2018-12-20', 300000, 'Selesai'),
-(6, '0000-00-00', 0, 'Penginputan Data Belum Selesai');
+(6, '2019-04-11', 250000, 'Selesai'),
+(7, '2019-04-11', 150000, 'Selesai'),
+(8, '2019-04-11', 300000, 'Selesai'),
+(9, '2019-04-13', 250000, 'Selesai'),
+(10, '0000-00-00', 0, 'Penginputan Data Belum Selesai');
 
 -- --------------------------------------------------------
 
@@ -326,7 +387,8 @@ ALTER TABLE `datasiswa`
 -- Indeks untuk tabel `detail_anggaran`
 --
 ALTER TABLE `detail_anggaran`
-  ADD KEY `no_anggaran` (`no_anggaran`);
+  ADD KEY `no_anggaran` (`no_anggaran`),
+  ADD KEY `kode_akun` (`kode_akun`);
 
 --
 -- Indeks untuk tabel `detail_rincian`
@@ -393,7 +455,8 @@ ALTER TABLE `user`
 -- Ketidakleluasaan untuk tabel `detail_anggaran`
 --
 ALTER TABLE `detail_anggaran`
-  ADD CONSTRAINT `detail_anggaran_ibfk_1` FOREIGN KEY (`no_anggaran`) REFERENCES `anggaran` (`no_anggaran`);
+  ADD CONSTRAINT `detail_anggaran_ibfk_1` FOREIGN KEY (`no_anggaran`) REFERENCES `anggaran` (`no_anggaran`),
+  ADD CONSTRAINT `detail_anggaran_ibfk_2` FOREIGN KEY (`kode_akun`) REFERENCES `akun` (`kode_akun`);
 
 --
 -- Ketidakleluasaan untuk tabel `detail_rincian`
@@ -418,8 +481,7 @@ ALTER TABLE `detail_transbeban`
 -- Ketidakleluasaan untuk tabel `jurnal`
 --
 ALTER TABLE `jurnal`
-  ADD CONSTRAINT `jurnal_ibfk_1` FOREIGN KEY (`kode_akun`) REFERENCES `akun` (`kode_akun`),
-  ADD CONSTRAINT `jurnal_ibfk_3` FOREIGN KEY (`no_trans`) REFERENCES `transbeban` (`no_trans`);
+  ADD CONSTRAINT `jurnal_ibfk_1` FOREIGN KEY (`kode_akun`) REFERENCES `akun` (`kode_akun`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

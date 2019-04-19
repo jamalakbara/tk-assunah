@@ -31,11 +31,7 @@
                         <th width="20%">No Rincian</th>
                         <th width="25%">Jenis Rincian</th>
                         <th width="25%">Total Biaya Rincian</th>
-<<<<<<< HEAD
-                        <th width="25%">Keterangan</th>
-=======
                         <th width="25%">Status</th>
->>>>>>> Update baru
                         <th width="15%">Aksi</th>
                       </tr>
                     </thead>
